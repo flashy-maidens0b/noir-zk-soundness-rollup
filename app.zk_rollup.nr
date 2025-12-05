@@ -55,8 +55,8 @@ fn main(
     // No hidden value creation inside this rollup step.
     assert(old_value == new_value + fee);
 
-    // Basic sanity checks
+     // Basic sanity checks
     assert(old_value > 0);
-    assert(new_value > 0);
     assert(fee <= old_value);
+    assert(new_value > 0);
 }

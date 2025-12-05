@@ -2,6 +2,11 @@
 
 use dep::std::hash::pedersen;
 
+type Value = u64;
+
+/// Minimal Noir circuit modelling ...
+
+
 /// Minimal Noir circuit modelling a confidential transfer step
 /// for an Aztec-style rollup. It proves:
 ///  - The old note commitment opens to (old_value, old_blinding)
@@ -11,9 +16,10 @@ use dep::std::hash::pedersen;
 /// frameworks can build on top of this style of constraint system.
 
 struct Note {
-    value: u64,
+    value: Value,
     blinding: Field,
 }
+
 
 fn note_commitment(note: Note) -> Field {
     let inputs: [Field; 2] = [note.value as Field, note.blinding];
@@ -24,14 +30,14 @@ fn main(
     // public inputs
     public old_commitment: Field,
     public new_commitment: Field,
-    public fee: u64,
+  public fee: Value,
 
     // private witness for old note
-    old_value: u64,
+    old_value: Value,
     old_blinding: Field,
 
     // private witness for new note
-    new_value: u64,
+       new_value: Value,
     new_blinding: Field,
 ) {
     // Recompute commitments from the private witnesses

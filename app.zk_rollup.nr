@@ -51,9 +51,10 @@ fn main(
     assert(computed_old_commitment == old_commitment);
     assert(computed_new_commitment == new_commitment);
 
+       // 🔐 Soundness invariant:
     // Value conservation: old_value = new_value + fee
-    // No hidden value creation inside this rollup step.
-    assert(old_value == new_value + fee);
+    // → No hidden value creation inside this rollup step.
+    assert_value_conserved(old_value, new_value, fee);
 
     // Basic sanity checks
     assert(old_value > 0);

@@ -19,6 +19,11 @@ fn note_commitment(note: Note) -> Field {
     let inputs: [Field; 2] = [note.value as Field, note.blinding];
     pedersen(inputs)
 }
+/// Ensure the note's commitment matches a public commitment.
+fn assert_note_matches_commitment(note: Note, expected_commitment: Field) {
+    let computed = note_commitment(note);
+    assert(computed == expected_commitment);
+}
 
 fn main(
     // public inputs
@@ -44,12 +49,10 @@ fn main(
         blinding: new_blinding,
     };
 
-    let computed_old_commitment = note_commitment(old_note);
-    let computed_new_commitment = note_commitment(new_note);
+       // Soundness constraints: witnesses must match public commitments
+    assert_note_matches_commitment(old_note, old_commitment);
+    assert_note_matches_commitment(new_note, new_commitment);
 
-    // Soundness constraints: witnesses must match public commitments
-    assert(computed_old_commitment == old_commitment);
-    assert(computed_new_commitment == new_commitment);
 
     // Value conservation: old_value = new_value + fee
     // No hidden value creation inside this rollup step.

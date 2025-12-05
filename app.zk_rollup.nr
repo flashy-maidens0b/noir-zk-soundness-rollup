@@ -19,6 +19,9 @@ fn note_commitment(note: Note) -> Field {
     let inputs: [Field; 2] = [note.value as Field, note.blinding];
     pedersen(inputs)
 }
+fn make_note(value: Value, blinding: Field) -> Note {
+    Note { value, blinding }
+}
 
 fn main(
     // public inputs
@@ -35,14 +38,10 @@ fn main(
     new_blinding: Field,
 ) {
     // Recompute commitments from the private witnesses
-    let old_note = Note {
-        value: old_value,
-        blinding: old_blinding,
-    };
-    let new_note = Note {
-        value: new_value,
-        blinding: new_blinding,
-    };
+     let old_note = make_note(old_value, old_blinding);
+    let new_note = make_note(new_value, new_blinding);
+
+
 
     let computed_old_commitment = note_commitment(old_note);
     let computed_new_commitment = note_commitment(new_note);

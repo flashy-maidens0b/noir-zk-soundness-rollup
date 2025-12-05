@@ -19,6 +19,9 @@ fn note_commitment(note: Note) -> Field {
     let inputs: [Field; 2] = [note.value as Field, note.blinding];
     pedersen(inputs)
 }
+// -----------------------------------------------------------------------------
+// Circuit entrypoint
+// -----------------------------------------------------------------------------
 
 fn main(
     // public inputs

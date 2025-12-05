@@ -10,6 +10,8 @@ use dep::std::hash::pedersen;
 /// Real zk / FHE systems like Aztec, Zama, and other soundness-focused
 /// frameworks can build on top of this style of constraint system.
 
+/// A confidential note representing a balance in the rollup.
+/// Only (value, blinding) are used to derive the commitment.
 struct Note {
     value: u64,
     blinding: Field,

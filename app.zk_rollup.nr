@@ -19,6 +19,11 @@ fn note_commitment(note: Note) -> Field {
     let inputs: [Field; 2] = [note.value as Field, note.blinding];
     pedersen(inputs)
 }
+    // Value conservation: old_value = new_value + fee
+    // No hidden value creation inside this rollup step.
+    assert_value_conserved(old_value, new_value, fee);
+
+}
 
 fn main(
     // public inputs

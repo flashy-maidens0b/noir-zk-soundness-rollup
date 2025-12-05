@@ -19,7 +19,10 @@ fn note_commitment(note: Note) -> Field {
     let inputs: [Field; 2] = [note.value as Field, note.blinding];
     pedersen(inputs)
 }
-
+/// Example (conceptual):
+///  - public: old_commitment, new_commitment, fee
+///  - private: old_value, old_blinding, new_value, new_blinding
+/// Off-chain code must ensure note_commitment(..) matches the public commitments.
 fn main(
     // public inputs
     public old_commitment: Field,

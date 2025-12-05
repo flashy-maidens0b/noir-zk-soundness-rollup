@@ -19,6 +19,9 @@ fn note_commitment(note: Note) -> Field {
     let inputs: [Field; 2] = [note.value as Field, note.blinding];
     pedersen(inputs)
 }
+fn assert_positive(value: Value) {
+    assert(value > 0);
+}
 
 fn main(
     // public inputs
@@ -55,8 +58,9 @@ fn main(
     // No hidden value creation inside this rollup step.
     assert(old_value == new_value + fee);
 
-    // Basic sanity checks
-    assert(old_value > 0);
-    assert(new_value > 0);
+     // Basic sanity checks
+    assert_positive(old_value);
     assert(fee <= old_value);
+    assert_positive(new_value);
+
 }

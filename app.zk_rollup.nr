@@ -26,13 +26,19 @@ fn main(
     public new_commitment: Field,
     public fee: u64,
 
-    // private witness for old note
-    old_value: u64,
+      // private witness for old note
+    /// Secret value of the input note.
+    old_value: Value,
+    /// Secret blinding of the input note.
     old_blinding: Field,
 
     // private witness for new note
-    new_value: u64,
+    /// Secret value of the output note.
+    new_value: Value,
+    /// Secret blinding of the output note.
     new_blinding: Field,
+
+
 ) {
     // Recompute commitments from the private witnesses
     let old_note = Note {

@@ -43,6 +43,12 @@ fn main(
         value: new_value,
         blinding: new_blinding,
     };
+    // Value conservation: old_value = new_value + fee
+    // No hidden value creation inside this rollup step.
+    assert_value_conserved(old_value, new_value, fee);
+
+    // Optional policy: disallow zero-fee transfers.
+    assert(fee > 0);
 
     let computed_old_commitment = note_commitment(old_note);
     let computed_new_commitment = note_commitment(new_note);

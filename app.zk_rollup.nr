@@ -1,14 +1,13 @@
 // File: app.zk_rollup.nr
+// SPDX-License-Identifier: MIT
+// Minimal Aztec-style rollup step circuit.
+//
+// Proves:
+//  - old note commitment opens to (old_value, old_blinding)
+//  - new note commitment opens to (new_value, new_blinding)
+//  - value conservation: old_value = new_value + fee
 
 use dep::std::hash::pedersen;
-
-/// Minimal Noir circuit modelling a confidential transfer step
-/// for an Aztec-style rollup. It proves:
-///  - The old note commitment opens to (old_value, old_blinding)
-///  - The new note commitment opens to (new_value, new_blinding)
-///  - Value is conserved: old_value = new_value + fee
-/// Real zk / FHE systems like Aztec, Zama, and other soundness-focused
-/// frameworks can build on top of this style of constraint system.
 
 struct Note {
     value: u64,

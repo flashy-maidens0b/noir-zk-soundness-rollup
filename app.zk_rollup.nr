@@ -26,6 +26,10 @@ fn main(
     public new_commitment: Field,
     public fee: u64,
 
+    // Disallow trivial zero commitments on-chain.
+    assert(old_commitment != 0);
+    assert(new_commitment != 0);
+
     // private witness for old note
     old_value: u64,
     old_blinding: Field,

@@ -22,9 +22,13 @@ fn note_commitment(note: Note) -> Field {
 
 fn main(
     // public inputs
+    /// Commitment for the input note being spent.
     public old_commitment: Field,
+    /// Commitment for the output note being created.
     public new_commitment: Field,
-    public fee: u64,
+    /// Public fee charged for this transfer.
+    public fee: Value,
+
 
     // private witness for old note
     old_value: u64,

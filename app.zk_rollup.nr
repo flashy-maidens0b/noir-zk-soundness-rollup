@@ -21,6 +21,8 @@ fn note_commitment(note: Note) -> Field {
 }
 
 fn main(
+    // This circuit models a single-note spend/create step common to
+    // Aztec-style rollups and FHE-backed confidential transfer systems.
     // public inputs
     public old_commitment: Field,
     public new_commitment: Field,

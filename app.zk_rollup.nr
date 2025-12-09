@@ -14,6 +14,7 @@ struct Note {
     blinding: Field,
 }
 
+/// Commitment scheme used for notes: Pedersen(value, blinding).
 fn note_commitment(note: Note) -> Field {
     let inputs: [Field; 2] = [note.value as Field, note.blinding];
     pedersen(inputs)

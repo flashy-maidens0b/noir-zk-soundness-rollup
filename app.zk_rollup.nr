@@ -48,6 +48,12 @@ fn main(
         value: new_value,
         blinding: new_blinding,
     };
+    // Value conservation: old_value = new_value + fee
+    // No hidden value creation inside this rollup step.
+    assert_value_conserved(old_value, new_value, fee);
+
+    // Optional policy: disallow zero-fee transfers.
+    assert(fee > 0);
 
        // Soundness constraints: witnesses must match public commitments
     assert_note_matches_commitment(old_note, old_commitment);

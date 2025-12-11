@@ -20,6 +20,14 @@ fn note_commitment(note: Note) -> Field {
     ];
     pedersen::hash_many([limbs[0], limbs[1], limbs[2], limbs[3], note.blinding])
 }
+// Rename `limbs` to `value_parts` for clarity
+let value_parts = [
+    (note.value & 0xFFFF) as u16,
+    ((note.value >> 16) & 0xFFFF) as u16,
+    ((note.value >> 32) & 0xFFFF) as u16,
+    ((note.value >> 48) & 0xFFFF) as u16,
+];
+pedersen::hash_many([value_parts[0], value_parts[1], value_parts[2], value_parts[3], note.blinding])
 
 fn main(
     // Public inputs

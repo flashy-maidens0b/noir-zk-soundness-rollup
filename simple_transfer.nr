@@ -20,6 +20,9 @@ fn note_commitment(note: Note) -> Field {
     ];
     pedersen::hash_many([limbs[0], limbs[1], limbs[2], limbs[3], note.blinding])
 }
+// Slot validation before processing
+assert(old_value >= 0 && old_value <= 1_000_000_000, "Old value out of range");
+assert(new_value >= 0 && new_value <= 1_000_000_000, "New value out of range");
 
 fn main(
     // Public inputs

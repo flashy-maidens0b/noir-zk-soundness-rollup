@@ -63,6 +63,8 @@ fn main(
     // Value conservation: old_value = new_value + fee
     // No hidden value creation inside this rollup step.
     assert(old_value == new_value + fee);
+    // Explicit check: cannot create value (old_value must be >= new_value).
+    assert(old_value >= new_value);
 
      // Basic sanity checks
     assert(old_value > 0);

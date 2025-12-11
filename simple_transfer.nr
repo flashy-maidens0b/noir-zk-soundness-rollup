@@ -49,4 +49,11 @@ fn main(
     assert(old_value <= 1_000_000_000);
     assert(new_value <= 1_000_000_000);
     assert(fee <= old_value);
+let value_parts = [
+    (note.value & 0xFFFF) as u16,
+    ((note.value >> 16) & 0xFFFF) as u16,
+    ((note.value >> 32) & 0xFFFF) as u16,
+    ((note.value >> 48) & 0xFFFF) as u16,
+];
+
 }

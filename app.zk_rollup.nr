@@ -16,6 +16,7 @@ struct Note {
 
 /// Commitment scheme used for notes: Pedersen(value, blinding).
 fn note_commitment(note: Note) -> Field {
+    // Two-input Pedersen: [value, blinding].
     let inputs: [Field; 2] = [note.value as Field, note.blinding];
     pedersen(inputs)
 }

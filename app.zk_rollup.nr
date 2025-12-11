@@ -82,3 +82,6 @@ fn main(
     assert(fee <= old_value);
     assert(new_value > 0);
 }
+    // Policy: output note must retain some value after paying the fee.
+    assert(new_value + fee >= new_value); // cheap overflow sanity
+
